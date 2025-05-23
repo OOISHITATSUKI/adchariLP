@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>アドチャリ - 走る広告でビジネスを加速</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Fixed CTA Buttons */
+        .fixed-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .cta-btn {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-primary {
+            background: linear-gradient(135deg, #FF6B6B, #FF4757);
+            color: white;
+            box-shadow: 0 8px 25px rgba(255, 71, 87, 0.3);
+        }
+        
+        .cta-secondary {
+            background: linear-gradient(135deg, #2ED573, #1DD1A1);
+            color: white;
+            box-shadow: 0 8px 25px rgba(29, 209, 161, 0.3);
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .cta-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 0 120px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: sparkle 20s linear infinite;
+        }
+        
+        @keyframes sparkle {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 900;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #FFD700;
+            font-weight: bold;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        
+        .hero .description {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 40px;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            color: #FFD700;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            position: relative;
+            color: #2c3e50;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #FF6B6B, #FF4757);
+            border-radius: 2px;
+        }
+        
+        /* Problems Section */
+        .problems {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+        
+        .problems .section-title {
+            color: white;
+        }
+        
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .problem-card {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .problem-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .problem-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .results-showcase {
+            background: rgba(255,255,255,0.15);
+            padding: 40px;
+            border-radius: 20px;
+            margin-top: 50px;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .result-item {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 15px;
+        }
+        
+        .result-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #FFD700;
+            display: block;
+        }
+        
+        /* Features Section */
+        .features {
+            background: #f8f9fa;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .feature-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+        
+        .pricing .section-title {
+            color: white;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .pricing-card {
+            background: rgba(255,255,255,0.1);
+            padding: 40px 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured {
+            border: 3px solid #FFD700;
+            transform: scale(1.1);
+        }
+        
+        .pricing-card.featured::before {
+            content: '人気No.1';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #FFD700;
+            color: #333;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        
+        .pricing-bikes {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        
+        .pricing-price {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+        
+        .pricing-description {
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .discount-info {
+            background: rgba(255,255,255,0.15);
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        /* Process Section */
+        .process {
+            background: white;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+        
+        .process-step::after {
+            content: '';
+            position: absolute;
+            top: 50px;
+            right: -20px;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+        
+        .process-step:last-child::after {
+            display: none;
+        }
+        
+        .process-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+        
+        .process-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        /* Photo Gallery Section */
+        .photo-gallery {
+            background: white;
+            padding: 80px 0;
+        }
+        
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .photo-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .photo-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+        
+        .photo-placeholder {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4em;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .photo-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="25" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="25" r="1" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .photo-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 40px 20px 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .photo-item:hover .photo-caption {
+            transform: translateY(0);
+        }
+        
+        .photo-title {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 8px;
+        }
+        
+        .photo-description {
+            font-size: 0.9em;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background: #f8f9fa;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 5em;
+            color: #667eea;
+            line-height: 1;
+        }
+        
+        .testimonial-text {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            font-style: italic;
+            color: #555;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        /* FAQ Section */
+        .faq {
+            background: white;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            background: #f8f9fa;
+            padding: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #2c3e50;
+            position: relative;
+        }
+        
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-answer {
+            padding: 20px;
+            background: white;
+            display: none;
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        /* Campaign Section */
+        .campaign {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            text-align: center;
+            color: #2c3e50;
+        }
+        
+        .campaign-highlight {
+            background: rgba(255,255,255,0.9);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .campaign-highlight h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #e74c3c;
+        }
+        
+        .large-cta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .large-cta .cta-btn {
+            padding: 20px 40px;
+            font-size: 1.2em;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h4 {
+            margin-bottom: 15px;
+            color: #3498db;
+        }
+        
+        .footer-section p {
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.4em;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .fixed-cta {
+                flex-direction: column;
+            }
+            
+            .section-title {
+                font-size: 2em;
+            }
+            
+            .large-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .process-step::after {
+                display: none;
+            }
+        }
+        
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Loading Animation */
+        .loading {
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="fixed-cta">
+        <a href="#contact" class="cta-btn cta-primary">🔥 無料相談する</a>
+        <a href="#pricing" class="cta-btn cta-secondary">💰 料金を見る</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>🚴‍♀️ 走る広告が、<br>あなたのビジネスを動かす。</h1>
+                <div class="subtitle">1日で1000人に届く広告、あります。</div>
+                <p class="description">
+                    街で「何これ⁉︎」と声をかけられる。視線を集め、写真を撮られ、SNSで拡散される広告──<br>
+                    それが【アドチャリ】です。
+                </p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number">87%</span>
+                        <span class="stat-label">リピート希望率</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">1000+</span>
+                        <span class="stat-label">1日あたりリーチ数</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">最短5日</span>
+                        <span class="stat-label">実施可能</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problems Section -->
+    <section class="section problems" id="problems">
+        <div class="container">
+            <h2 class="section-title">こんな悩み、ありませんか？</h2>
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <span class="problem-icon">📄</span>
+                    <h3>チラシを配っても効果がない…</h3>
+                    <p>受け取ってもらえず、見てもらえない</p>
+                </div>
+                <div class="problem-card">
+                    <span class="problem-icon">📱</span>
+                    <h3>SNS広告に埋もれて反応が鈍い…</h3>
+                    <p>競合が多すぎて印象に残らない</p>
+                </div>
+                <div class="problem-card">
+                    <span class="problem-icon">🏪</span>
+                    <h3>開店イベントなのに、人が来ない…</h3>
+                    <p>認知が足りず集客できない</p>
+                </div>
+                <div class="problem-card">
+                    <span class="problem-icon">⚡</span>
+                    <h3>街の人に"今すぐ認知"されたい</h3>
+                    <p>インパクトのある宣伝方法がない</p>
+                </div>
+            </div>
+            
+            <div class="results-showcase">
+                <h3 style="text-align: center; margin-bottom: 40px; font-size: 2em;">👆 そんな方にこそ選ばれています。</h3>
+                <h4 style="text-align: center; margin-bottom: 30px; font-size: 1.5em;">アドチャリなら、こんな成果が出ています：</h4>
+                <div class="results-grid">
+                    <div class="result-item">
+                        <span class="result-number">+200</span>
+                        <p><strong>新店オープン告知</strong><br>2日間でフォロワー増加<br>売上1.5倍に</p>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-number">即満席</span>
+                        <p><strong>飲食店の来店誘導</strong><br>夕方走行→SNS投稿→<br>その日の予約が満席に</p>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-number">800人</span>
+                        <p><strong>エリア認知向上</strong><br>3台導入で1日のリーチ数<br>道行く人がパシャパシャ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section features" id="features">
+        <div class="container">
+            <h2 class="section-title">アドチャリが選ばれる5つの理由</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">💡</span>
+                    <h3 class="feature-title">目線の高さで"記憶"に残る</h3>
+                    <p>歩行者と同じ高さ＝視界に飛び込む。看板やポスターとは違う自然な訴求力で印象に残ります。</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📸</span>
+                    <h3 class="feature-title">「映える」ビジュアルがSNSに拡散</h3>
+                    <p>「どこで見たの？」と話題にされやすい。自然な口コミ効果でさらなる拡散を生み出します。</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🌍</span>
+                    <h3 class="feature-title">環境にやさしく企業イメージUP</h3>
+                    <p>SDGs対応、CO₂ゼロのエコプロモーション。企業の社会的責任もアピールできます。</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">👩</span>
+                    <h3 class="feature-title">女性スタッフによる親近感ある訴求</h3>
+                    <p>声かけ＆試供品配布も自然に。親しみやすいコミュニケーションで好印象を与えます。</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🌃</span>
+                    <h3 class="feature-title">夜も光るLED搭載</h3>
+                    <p>見えない時間帯の訴求もOK。24時間いつでも効果的な広告配信が可能です。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="section pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">料金プラン</h2>
+            <div style="text-align: center; margin-bottom: 40px;">
+                <h3 style="color: #FFD700; font-size: 1.5em;">💸 初回限定割引あり／見積無料！</h3>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-bikes">🚲</div>
+                    <div class="pricing-price">¥140,000</div>
+                    <div class="pricing-description">1台 × 1日<br>少数でも効果が欲しい方に</div>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-bikes">🚲🚲</div>
+                    <div class="pricing-price">¥250,000</div>
+                    <div class="pricing-description">2台 × 1日<br>駅周辺・繁華街で目立たせたい方に</div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-bikes">🚲🚲🚲</div>
+                    <div class="pricing-price">¥360,000</div>
+                    <div class="pricing-description">3台 × 1日<br>街全体をジャックしたい方に</div>
+                </div>
+            </div>
+            
+            <div class="discount-info">
+                <h4 style="margin-bottom: 20px; font-size: 1.3em;">🎨 追加オプション</h4>
+                <p style="margin-bottom: 20px;">ポスター制作も対応（+¥40,000〜）<br>
+                📦 印刷・運搬・保管 すべて込み</p>
+                
+                <h4 style="margin-bottom: 15px; color: #FFD700;">📅 お得な割引制度</h4>
+                <p>2ヶ月前予約 → <strong>10%OFF！</strong><br>
+                4日以上連続 → <strong>さらに5%OFF！</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="section process" id="process">
+        <div class="container">
+            <h2 class="section-title">導入の流れ（とにかく簡単）</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="process-number">1</div>
+                    <h3 class="process-title">📩 無料相談フォームから連絡</h3>
+                    <p>お気軽にご相談ください。どんな小さなことでもOKです。</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">2</div>
+                    <h3 class="process-title">📄 見積・ご提案（最短当日）</h3>
+                    <p>ご要望に合わせた最適なプランをご提案いたします。</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">3</div>
+                    <h3 class="process-title">🖼️ ポスターデータ提出</h3>
+                    <p>弊社制作も可能です。デザインからお任せください。</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-number">4</div>
+                    <h3 class="process-title">🚴‍♀️ 指定日に走行開始！</h3>
+                    <p>準備完了！効果的な広告配信をスタートします。</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 50px;">
+                <div style="background: linear-gradient(135deg, #FF6B6B, #FF4757); color: white; padding: 20px; border-radius: 15px; display: inline-block;">
+                    ⏳ <strong>最短5日後の実施も可能！</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section class="photo-gallery" id="gallery">
+        <div class="container">
+            <h2 class="section-title">実際の走行風景</h2>
+            <p style="text-align: center; font-size: 1.2em; color: #666; margin-bottom: 20px;">
+                街中で話題になっているアドチャリの様子をご覧ください
+            </p>
+            <div class="photo-grid">
+                <div class="photo-item">
+                    <div class="photo-placeholder">
+                        📸
+                    </div>
+                    <div class="photo-caption">
+                        <div class="photo-title">渋谷スクランブル交差点での走行</div>
+                        <div class="photo-description">多くの人が立ち止まって写真撮影。SNSでも大きな話題に！</div>
+                    </div>
+                </div>
+                <div class="photo-item">
+                    <div class="photo-placeholder">
+                        📱
+                    </div>
+                    <div class="photo-caption">
+                        <div class="photo-title">お客様との自然な交流シーン</div>
+                        <div class="photo-description">「これ何ですか？」と多くの方から声をかけられる様子</div>
+                    </div>
+                </div>
+                <div class="photo-item">
+                    <div class="photo-placeholder">
+                        🌃
+                    </div>
+                    <div class="photo-caption">
+                        <div class="photo-title">夜間のLED点灯走行</div>
+                        <div class="photo-description">暗い時間帯でも目立つLED搭載で24時間効果的な宣伝</div>
+                    </div>
+                </div>
+                <div class="photo-item">
+                    <div class="photo-placeholder">
+                        👥
+                    </div>
+                    <div class="photo-caption">
+                        <div class="photo-title">イベント会場での大盛況</div>
+                        <div class="photo-description">開店イベントで活用。多くの来場者で賑わう店舗前</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">導入事例＆お客様の声</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">2日でフォロワー200人増。コスパ最強でした！想像以上に街の人が反応してくれて、お店の認知度が一気に上がりました。</p>
+                    <div class="testimonial-author">— 飲食店経営者 田中様</div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">1日で50人以上が話しかけてくれてビックリ！みんな写真撮って帰るんですよ。SNSでも話題になって、売上が30%アップしました。</p>
+                    <div class="testimonial-author">— 雑貨店オーナー 佐藤様</div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">イベント告知で使ったら、当日の来場者数が予想の2倍に！アドチャリなしでは考えられない結果でした。</p>
+                    <div class="testimonial-author">— イベント企画会社 山田様</div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <div style="background: #f8f9fa; padding: 30px; border-radius: 15px; border-left: 5px solid #667eea;">
+                    <h4 style="color: #2c3e50; margin-bottom: 15px;">📸 実施風景</h4>
+                    <p style="color: #666;">街中での撮影風景、SNS投稿、お客様との交流の様子など、<br>リアルな効果をご確認いただけます。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq" id="faq">
+        <div class="container">
+            <h2 class="section-title">よくある質問</h2>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Q：屋外イベント中止の場合は？
+                </div>
+                <div class="faq-answer">
+                    A：悪天候による振替実施が可能です。お客様のご都合に合わせて柔軟に対応いたします。
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Q：車体だけ借りられますか？
+                </div>
+                <div class="faq-answer">
+                    A：可能です。条件あり（保管場所・運転者確認等）となりますが、レンタルのみも承っております。
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Q：サンプルの配布もできますか？
+                </div>
+                <div class="faq-answer">
+                    A：可能です。チラシ30枚まで無料。それ以上や試供品配布も対応可能です（要相談）。
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Q：どのエリアまで対応していますか？
+                </div>
+                <div class="faq-answer">
+                    A：東京23区を中心に、神奈川・埼玉・千葉の主要エリアまで対応可能です。その他地域もご相談ください。
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Q：効果測定はできますか？
+                </div>
+                <div class="faq-answer">
+                    A：走行ルートのGPSデータ、SNS言及数、お客様へのヒアリング結果など、詳細な効果レポートをご提供します。
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campaign Section -->
+    <section class="section campaign" id="contact">
+        <div class="container">
+            <h2 class="section-title">今だけ限定：無料相談キャンペーン</h2>
+            <div class="campaign-highlight">
+                <h3>🔥 導入前に「無料相談」された企業の72%が成約！</h3>
+                <p style="font-size: 1.2em; margin-bottom: 20px;">フォーム送信後、<strong>最短1営業日でご連絡</strong>します</p>
+                <div style="background: linear-gradient(135deg, #FF6B6B, #FF4757); color: white; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                    <h4 style="margin-bottom: 15px;">⚡️ 今すぐ行動しないと損する理由</h4>
+                    <ul style="text-align: left; display: inline-block;">
+                        <li>✅ 初回限定30%OFF（今月末まで）</li>
+                        <li>✅ ポスターデザイン制作費無料</li>
+                        <li>✅ 効果測定レポート無料提供</li>
+                        <li>✅ 次回予約で更に10%OFF権利</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="large-cta">
+                <a href="mailto:info@cawae-laboo.com?subject=アドチャリ無料相談希望&body=お名前：%0D%0A会社名：%0D%0A電話番号：%0D%0A希望実施時期：%0D%0Aご相談内容：" class="cta-btn cta-primary" style="font-size: 1.3em; padding: 25px 40px;">
+                    🔥 今すぐ無料相談する
+                </a>
+                <a href="mailto:info@cawae-laboo.com?subject=アドチャリ資料請求&body=お名前：%0D%0A会社名：%0D%0A資料送付先メールアドレス：" class="cta-btn cta-secondary" style="font-size: 1.3em; padding: 25px 40px;">
+                    📄 資料をダウンロード
+                </a>
+            </div>
+            
+            <div style="margin-top: 40px; background: rgba(255,255,255,0.9); padding: 30px; border-radius: 15px;">
+                <h4 style="color: #e74c3c; margin-bottom: 20px;">⏰ 限定キャンペーン終了まで</h4>
+                <div id="countdown" style="font-size: 2em; font-weight: bold; color: #2c3e50;"></div>
+                <p style="margin-top: 15px; color: #666;">お申し込みはお早めに！</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>運営会社情報</h4>
+                    <p>合同会社ADLINK</p>
+                    <p>東京都渋谷区道玄坂1-10-8</p>
+                    <p>インボイス番号：T6011003018188</p>
+                </div>
+                <div class="footer-section">
+                    <h4>お問い合わせ</h4>
+                    <p>📧 info@cawae-laboo.com</p>
+                    <p>📞 営業時間：平日9:00-18:00</p>
+                    <p>💬 LINE相談も受付中</p>
+                </div>
+                <div class="footer-section">
+                    <h4>サービス対応エリア</h4>
+                    <p>東京23区全域</p>
+                    <p>神奈川・埼玉・千葉主要エリア</p>
+                    <p>その他エリアもご相談ください</p>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #34495e; padding-top: 20px; margin-top: 30px;">
+                <p>&copy; 2025 合同会社ADLINK. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Toggle Function
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const isOpen = answer.style.display === 'block';
+            
+            // Close all FAQ answers
+            document.querySelectorAll('.faq-answer').forEach(ans => {
+                ans.style.display = 'none';
+            });
+            
+            // Reset all FAQ question icons
+            document.querySelectorAll('.faq-question').forEach(q => {
+                q.style.background = '#f8f9fa';
+            });
+            
+            if (!isOpen) {
+                answer.style.display = 'block';
+                element.style.background = '#e3f2fd';
+            }
+        }
+
+        // Countdown Timer
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const endOfMonth = new Date();
+            endOfMonth.setMonth(endOfMonth.getMonth() + 1);
+            endOfMonth.setDate(0);
+            endOfMonth.setHours(23, 59, 59, 999);
+            
+            const distance = endOfMonth.getTime() - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('countdown').innerHTML = 
+                `${days}日 ${hours}時間 ${minutes}分 ${seconds}秒`;
+                
+            if (distance < 0) {
+                document.getElementById('countdown').innerHTML = "キャンペーン終了";
+            }
+        }
+
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add loading animation to elements
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('loading');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .pricing-card, .testimonial-card, .process-step').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add pulse animation to CTA buttons
+        setInterval(() => {
+            document.querySelectorAll('.cta-primary').forEach(btn => {
+                btn.style.animation = 'none';
+                setTimeout(() => {
+                    btn.style.animation = 'pulse 2s infinite';
+                }, 10);
+            });
+        }, 5000);
+
+        // Add CSS for pulse animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.05); }
+                100% { transform: scale(1); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
