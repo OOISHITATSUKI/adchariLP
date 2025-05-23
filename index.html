@@ -7,6 +7,215 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>アドチャリ - 走る広告でビジネスを加速</title>
     <style>
+ * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
+            line-height: 1.6;
+            background: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Photo Gallery Section */
+        .photo-gallery {
+            background: white;
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            position: relative;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #FF6B6B, #FF4757);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 50px;
+        }
+        
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .photo-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: white;
+        }
+        
+        .photo-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+        
+        .photo-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .photo-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .photo-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 40px 20px 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .photo-item:hover .photo-caption {
+            transform: translateY(0);
+        }
+        
+        .photo-title {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 8px;
+        }
+        
+        .photo-description {
+            font-size: 0.9em;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+        
+        /* モーダル用のスタイル */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            margin: auto;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: zoomIn 0.3s ease;
+        }
+        
+        @keyframes zoomIn {
+            from { transform: translateY(-50%) scale(0.7); }
+            to { transform: translateY(-50%) scale(1); }
+        }
+        
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        
+        .close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close:hover {
+            color: #FF6B6B;
+        }
+        
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2em;
+            }
+            
+            .photo-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .photo-item img {
+                height: 200px;
+            }
+            
+            .modal-content {
+                max-width: 95%;
+                max-height: 85%;
+            }
+        }
+        
+        /* アニメーション効果 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 0.6s ease forwards;
+        }
+        
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 遅延アニメーション */
+        .photo-item:nth-child(1) { animation-delay: 0.1s; }
+        .photo-item:nth-child(2) { animation-delay: 0.2s; }
+        .photo-item:nth-child(3) { animation-delay: 0.3s; }
+        .photo-item:nth-child(4) { animation-delay: 0.4s; }
+
+                
         * {
             margin: 0;
             padding: 0;
@@ -1024,15 +1233,53 @@
             <div style="text-align: center; margin-top: 50px;">
                 <div style="background: #f8f9fa; padding: 30px; border-radius: 15px; border-left: 5px solid #667eea;">
                     <h4 style="color: #2c3e50; margin-bottom: 15px;">📸 実施風景</h4>
-                            <div class="photo-placeholder"><img src="picture/1-2-3のコピー.jpeg">
-                        📸
+
+
+                            <section class="photo-gallery" id="gallery">
+        <div class="container">
+            <h2 class="section-title">📸 実施風景</h2>
+            <p class="section-subtitle">
+                街中での撮影風景、SNS投稿、お客様との交流の様子など、<br>
+                リアルな効果をご確認いただけます
+            </p>
+            
+            <div class="photo-grid">
+                <div class="photo-item fade-in" onclick="openModal('modal1')">
+                    <!-- ここに実際の写真を入れてください -->
+                    <img src="https://via.placeholder.com/400x250/667eea/ffffff?text=複数台での街中走行" alt="複数台での街中走行">
+                    <div class="photo-caption">
+                        <div class="photo-title">🚲 複数台での街中走行</div>
+                        <div class="photo-description">オレンジのユニフォームで統一感を演出。3台連なって走行することで圧倒的な注目度を実現</div>
                     </div>
-                            <div class="photo-placeholder"><img src="picture/1-2-3のコピー.jpeg">
-                        📸
+                </div>
+                
+                <div class="photo-item fade-in" onclick="openModal('modal2')">
+                    <!-- ここに実際の写真を入れてください -->
+                    <img src="https://via.placeholder.com/400x250/764ba2/ffffff?text=お客様との交流" alt="お客様との交流">
+                    <div class="photo-caption">
+                        <div class="photo-title">👥 お客様との自然な交流</div>
+                        <div class="photo-description">「これ何ですか？」と多くの方から声をかけられ、自然なコミュニケーションが生まれます</div>
                     </div>
-                            <div class="photo-placeholder"><img src="picture/1-2-3のコピー.jpeg">
-                        📸
+                </div>
+                
+                <div class="photo-item fade-in" onclick="openModal('modal3')">
+                    <!-- ここに実際の写真を入れてください -->
+                    <img src="https://via.placeholder.com/400x250/FF6B6B/ffffff?text=SNS撮影の様子" alt="SNS撮影の様子">
+                    <div class="photo-caption">
+                        <div class="photo-title">📱 SNS撮影の瞬間</div>
+                        <div class="photo-description">通りすがりの人々が思わず写真を撮影。バイラル効果で拡散される瞬間です</div>
                     </div>
+                </div>
+                
+                <div class="photo-item fade-in" onclick="openModal('modal4')">
+                    <!-- ここに実際の写真を入れてください -->
+                    <img src="https://via.placeholder.com/400x250/2ED573/ffffff?text=イベント会場" alt="イベント会場での活用">
+                    <div class="photo-caption">
+                        <div class="photo-title">🎪 イベント会場での活用</div>
+                        <div class="photo-description">開店イベントや商業施設でのプロモーション。多くの来場者で賑わう様子</div>
+                    </div>
+                </div>
+            </div>
                             
                             
                     <p style="color: #666;">街中での撮影風景、SNS投稿、お客様との交流の様子など、<br>リアルな効果をご確認いただけます。</p>
