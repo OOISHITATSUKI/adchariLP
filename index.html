@@ -1,4 +1,1088 @@
-<!-- Problems Section -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>アドチャリ - 走る広告でビジネスを加速</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Fixed CTA Buttons */
+        .fixed-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .cta-btn {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-primary {
+            background: linear-gradient(135deg, #FF6B6B, #FF4757);
+            color: white;
+            box-shadow: 0 8px 25px rgba(255, 71, 87, 0.3);
+        }
+        
+        .cta-secondary {
+            background: linear-gradient(135deg, #2ED573, #1DD1A1);
+            color: white;
+            box-shadow: 0 8px 25px rgba(29, 209, 161, 0.3);
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        /* Hero Section - Compact and Clean */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 3;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 2.8em;
+            margin-bottom: 20px;
+            font-weight: 900;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            color: #FFD700;
+            font-weight: bold;
+        }
+        
+        .hero .description {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #FFD700;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        /* Quick Impact Section */
+        .impact-numbers {
+            background: #f8f9fa;
+            padding: 60px 0;
+        }
+        
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .impact-item {
+            text-align: center;
+            background: white;
+            padding: 30px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .impact-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .impact-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .impact-stat {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .impact-label {
+            font-size: 1.1em;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        /* Quick Benefits Section */
+        .quick-benefits {
+            background: white;
+            padding: 60px 0;
+        }
+        
+        .benefits-comparison {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 40px;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .comparison-item {
+            background: #f8f9fa;
+            padding: 30px 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .comparison-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .old-method {
+            border-left: 5px solid #FF6B6B;
+        }
+        
+        .new-method {
+            border-left: 5px solid #2ED573;
+        }
+        
+        .comparison-item h3 {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .old-method h3 {
+            color: #FF6B6B;
+        }
+        
+        .new-method h3 {
+            color: #2ED573;
+        }
+        
+        .comparison-item ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .comparison-item li {
+            padding: 8px 0;
+            font-size: 1em;
+            line-height: 1.5;
+        }
+        
+        .vs-arrow {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.3em;
+            margin-bottom: 40px;
+            position: relative;
+            color: #2c3e50;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #FF6B6B, #FF4757);
+            border-radius: 2px;
+        }
+
+        /* Problems Section */
+        .problems {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+        
+        .problems .section-title {
+            color: white;
+        }
+        
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .problem-card {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .problem-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .problem-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .results-showcase {
+            background: rgba(255,255,255,0.15);
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 40px;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+        
+        .result-item {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 15px;
+        }
+        
+        .result-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #FFD700;
+            display: block;
+        }
+
+        /* Swiper Styles */
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .swiper-wrapper {
+            display: flex;
+            transition-timing-function: ease-in-out;
+            will-change: transform;
+        }
+        
+        .swiper-slide {
+            flex-shrink: 0;
+            width: 100%;
+            position: relative;
+        }
+        
+        .swiper-pagination {
+            position: relative;
+            bottom: auto;
+            left: auto;
+            transform: none;
+            margin-top: 25px;
+            margin-bottom: 0;
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+            justify-content: center;
+            align-items: center;
+            pointer-events: none;
+        }
+        
+        .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+            background: rgba(102, 126, 234, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            pointer-events: auto;
+            border: 2px solid rgba(102, 126, 234, 0.5);
+        }
+        
+        .swiper-pagination-bullet-active {
+            background: #667eea;
+            transform: scale(1.2);
+            box-shadow: 0 0 15px rgba(102, 126, 234, 0.4);
+            border-color: #667eea;
+        }
+        
+        .swiper-button-next,
+        .swiper-button-prev {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            color: #2c3e50;
+            font-size: 18px;
+            font-weight: bold;
+            user-select: none;
+        }
+        
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            background: rgba(255, 215, 0, 0.9);
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .swiper-button-next {
+            right: 15px;
+        }
+        
+        .swiper-button-prev {
+            left: 15px;
+        }
+
+        /* Features Section */
+        .features {
+            background: #f8f9fa;
+        }
+        
+        .features-swiper .swiper-slide {
+            width: 320px;
+            margin-right: 25px;
+        }
+        
+        .features-swiper {
+            padding: 15px 0 50px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 30px 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            height: 260px;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .feature-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .feature-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: #2c3e50;
+        }
+
+        /* Success Stories */
+        .success-stories {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .success-stories .section-title {
+            color: white;
+        }
+        
+        .success-swiper .swiper-slide {
+            width: 280px;
+            margin-right: 25px;
+        }
+        
+        .success-swiper {
+            padding: 15px 0 50px;
+        }
+        
+        .success-story-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px 25px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .success-story-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .success-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #FFD700;
+            margin-bottom: 12px;
+        }
+        
+        .success-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+        
+        .success-description {
+            line-height: 1.5;
+            opacity: 0.9;
+            font-size: 0.9em;
+        }
+
+        /* Photo Gallery */
+        .photo-gallery {
+            background: white;
+        }
+        
+        .gallery-swiper .swiper-slide {
+            width: 300px;
+            margin-right: 20px;
+        }
+        
+        .gallery-swiper {
+            padding: 15px 0 50px;
+        }
+        
+        .photo-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            height: 280px;
+        }
+        
+        .photo-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+        
+        .photo-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .photo-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .photo-placeholder {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5em;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .photo-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 25px 15px 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .photo-item:hover .photo-caption {
+            transform: translateY(0);
+        }
+        
+        .photo-title {
+            font-weight: bold;
+            font-size: 1em;
+            margin-bottom: 6px;
+        }
+        
+        .photo-description {
+            font-size: 0.85em;
+            opacity: 0.9;
+            line-height: 1.3;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: #f8f9fa;
+        }
+        
+        .testimonials-swiper .swiper-slide {
+            width: 350px;
+            margin-right: 20px;
+        }
+        
+        .testimonials-swiper {
+            padding: 15px 0 50px;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            transition: transform 0.3s ease;
+            height: 180px;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -8px;
+            left: 15px;
+            font-size: 3em;
+            color: #667eea;
+            line-height: 1;
+        }
+        
+        .testimonial-text {
+            font-size: 0.95em;
+            margin-bottom: 12px;
+            font-style: italic;
+            color: #555;
+            line-height: 1.5;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 0.85em;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+        
+        .pricing .section-title {
+            color: white;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .pricing-card {
+            background: rgba(255,255,255,0.1);
+            padding: 30px 25px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured {
+            border: 3px solid #FFD700;
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured::before {
+            content: '人気No.1';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #FFD700;
+            color: #333;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.85em;
+        }
+        
+        .pricing-bikes {
+            font-size: 1.8em;
+            margin-bottom: 18px;
+        }
+        
+        .pricing-price {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #FFD700;
+            margin-bottom: 8px;
+        }
+        
+        .pricing-description {
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+        
+        .discount-info {
+            background: rgba(255,255,255,0.15);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        /* Process Section */
+        .process {
+            background: white;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+        }
+        
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+        
+        .process-step::after {
+            content: '';
+            position: absolute;
+            top: 40px;
+            right: -15px;
+            width: 30px;
+            height: 2px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+        
+        .process-step:last-child::after {
+            display: none;
+        }
+        
+        .process-number {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: 0 auto 15px;
+        }
+        
+        .process-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: #2c3e50;
+        }
+
+        /* FAQ Section */
+        .faq {
+            background: white;
+        }
+        
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            background: #f8f9fa;
+            padding: 18px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #2c3e50;
+            position: relative;
+        }
+        
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.4em;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-answer {
+            padding: 18px;
+            background: white;
+            display: none;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Campaign Section */
+        .campaign {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            text-align: center;
+            color: #2c3e50;
+        }
+        
+        .campaign-highlight {
+            background: rgba(255,255,255,0.9);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .campaign-highlight h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #e74c3c;
+        }
+        
+        .large-cta {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .large-cta .cta-btn {
+            padding: 18px 35px;
+            font-size: 1.1em;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+        
+        .footer-section h4 {
+            margin-bottom: 12px;
+            color: #3498db;
+        }
+        
+        .footer-section p {
+            margin-bottom: 8px;
+            opacity: 0.8;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2em;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.2em;
+            }
+            
+            .hero .description {
+                font-size: 1em;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .stat-number {
+                font-size: 1.8em;
+            }
+            
+            .impact-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .benefits-comparison {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .vs-arrow {
+                order: 2;
+                margin: 15px 0;
+            }
+            
+            .old-method {
+                order: 1;
+            }
+            
+            .new-method {
+                order: 3;
+            }
+            
+            .swiper-button-next,
+            .swiper-button-prev {
+                display: none;
+            }
+            
+            .features-swiper .swiper-slide,
+            .gallery-swiper .swiper-slide,
+            .success-swiper .swiper-slide,
+            .testimonials-swiper .swiper-slide {
+                width: 260px;
+                margin-right: 15px;
+            }
+            
+            .section-title {
+                font-size: 2em;
+            }
+            
+            .fixed-cta {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            
+            .cta-btn {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+            
+            .process-step::after {
+                display: none;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="fixed-cta">
+        <a href="https://forms.gle/fTa9yD7snLk6EmGz6" target="_blank" class="cta-btn cta-primary">🔥 無料相談する</a>
+        <a href="#pricing" class="cta-btn cta-secondary">💰 料金を見る</a>
+        <a href="#" onclick="downloadPDF()" class="cta-btn" style="background: linear-gradient(135deg, #FFA726, #FF7043); color: white; box-shadow: 0 8px 25px rgba(255, 112, 67, 0.3);">📄 資料DL</a>
+    </div>
+
+    <!-- Hero Section - Compact and Clean -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>🚴‍♀️ 走る広告が、<br>あなたのビジネスを動かす。</h1>
+            <div class="subtitle">1日で1000人に届く広告、あります。</div>
+            <p class="description">
+                街で「何これ⁉︎」と声をかけられる。視線を集め、写真を撮られ、SNSで拡散される広告──<br>
+                それが【アドチャリ】です。
+            </p>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number">1000+</span>
+                    <span class="stat-label">1日あたりリーチ数</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">最短5日</span>
+                    <span class="stat-label">実施可能</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Numbers Section -->
+    <section class="section impact-numbers">
+        <div class="container">
+            <h2 class="section-title">アドチャリの圧倒的な効果</h2>
+            <div class="impact-grid">
+                <div class="impact-item">
+                    <span class="impact-icon">📈</span>
+                    <span class="impact-stat">+200人</span>
+                    <p class="impact-label">2日間でフォロワー増加<br>新店オープン告知で達成</p>
+                </div>
+                <div class="impact-item">
+                    <span class="impact-icon">🍽️</span>
+                    <span class="impact-stat">即満席</span>
+                    <p class="impact-label">夕方走行→SNS投稿→<br>その日の予約が満席に</p>
+                </div>
+                <div class="impact-item">
+                    <span class="impact-icon">👥</span>
+                    <span class="impact-stat">800人</span>
+                    <p class="impact-label">1日のリーチ数<br>道行く人がパシャパシャ</p>
+                </div>
+                <div class="impact-item">
+                    <span class="impact-icon">💰</span>
+                    <span class="impact-stat">1.5倍</span>
+                    <p class="impact-label">売上向上を実現<br>コスパ最強の宣伝効果</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Benefits Section -->
+    <section class="section quick-benefits">
+        <div class="container">
+            <h2 class="section-title">従来の宣伝 vs アドチャリ</h2>
+            <div class="benefits-comparison">
+                <div class="comparison-item old-method">
+                    <h3>❌ 従来の宣伝方法</h3>
+                    <ul>
+                        <li>📄 チラシ → 受け取ってもらえない</li>
+                        <li>📱 SNS広告 → 競合に埋もれる</li>
+                        <li>🏪 看板 → 印象に残らない</li>
+                        <li>💸 高額な広告費 → 効果が見えない</li>
+                    </ul>
+                </div>
+                
+                <div class="vs-arrow">
+                    VS
+                </div>
+                
+                <div class="comparison-item new-method">
+                    <h3>✅ アドチャリなら</h3>
+                    <ul>
+                        <li>👀 目線の高さで記憶に残る</li>
+                        <li>📸 SNSで自然に拡散される</li>
+                        <li>🌍 環境配慮で企業イメージUP</li>
+                        <li>💡 女性スタッフの親近感ある訴求</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problems Section -->
     <section class="section problems" id="problems">
         <div class="container">
             <h2 class="section-title">こんな悩み、ありませんか？</h2>
@@ -26,8 +1110,8 @@
             </div>
             
             <div class="results-showcase">
-                <h3 style="text-align: center; margin-bottom: 40px; font-size: 2em;">👆 そんな方にこそ選ばれています。</h3>
-                <h4 style="text-align: center; margin-bottom: 30px; font-size: 1.5em;">アドチャリなら、こんな成果が出ています：</h4>
+                <h3 style="text-align: center; margin-bottom: 30px; font-size: 1.8em;">👆 そんな方にこそ選ばれています。</h3>
+                <h4 style="text-align: center; margin-bottom: 25px; font-size: 1.3em;">アドチャリなら、こんな成果が出ています：</h4>
                 <div class="results-grid">
                     <div class="result-item">
                         <span class="result-number">+200</span>
@@ -148,7 +1232,7 @@
     <section class="photo-gallery" id="gallery">
         <div class="container">
             <h2 class="section-title">実際の走行風景</h2>
-            <p style="text-align: center; font-size: 1.2em; color: #666; margin-bottom: 20px;">
+            <p style="text-align: center; font-size: 1.1em; color: #666; margin-bottom: 20px;">
                 街中で話題になっているアドチャリの様子をご覧ください
             </p>
             <div class="swiper-container gallery-swiper">
@@ -281,8 +1365,8 @@
     <section class="section pricing" id="pricing">
         <div class="container">
             <h2 class="section-title">料金プラン</h2>
-            <div style="text-align: center; margin-bottom: 40px;">
-                <h3 style="color: #FFD700; font-size: 1.5em;">💸 初回限定割引あり／見積無料！</h3>
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h3 style="color: #FFD700; font-size: 1.4em;">💸 初回限定割引あり／見積無料！</h3>
             </div>
             <div class="pricing-grid">
                 <div class="pricing-card">
@@ -303,11 +1387,11 @@
             </div>
             
             <div class="discount-info">
-                <h4 style="margin-bottom: 20px; font-size: 1.3em;">🎨 追加オプション</h4>
-                <p style="margin-bottom: 20px;">ポスター制作も対応（+¥40,000〜）<br>
+                <h4 style="margin-bottom: 15px; font-size: 1.2em;">🎨 追加オプション</h4>
+                <p style="margin-bottom: 15px;">ポスター制作も対応（+¥40,000〜）<br>
                 📦 印刷・運搬・保管 すべて込み</p>
                 
-                <h4 style="margin-bottom: 15px; color: #FFD700;">📅 お得な割引制度</h4>
+                <h4 style="margin-bottom: 12px; color: #FFD700;">📅 お得な割引制度</h4>
                 <p>2ヶ月前予約 → <strong>10%OFF！</strong><br>
                 4日以上連続 → <strong>さらに5%OFF！</strong></p>
             </div>
@@ -340,8 +1424,8 @@
                     <p>準備完了！効果的な広告配信をスタートします。</p>
                 </div>
             </div>
-            <div style="text-align: center; margin-top: 50px;">
-                <div style="background: linear-gradient(135deg, #FF6B6B, #FF4757); color: white; padding: 20px; border-radius: 15px; display: inline-block;">
+            <div style="text-align: center; margin-top: 40px;">
+                <div style="background: linear-gradient(135deg, #FF6B6B, #FF4757); color: white; padding: 18px; border-radius: 15px; display: inline-block;">
                     ⏳ <strong>最短5日後の実施も可能！</strong>
                 </div>
             </div>
@@ -365,7 +1449,7 @@
                     Q：車体だけ借りられますか？
                 </div>
                 <div class="faq-answer">
-                    A：可能です。条件あり（保管場所・運転者確認等）となりますが، レンタルのみも承っております。
+                    A：可能です。条件あり（保管場所・運転者確認等）となりますが、レンタルのみも承っております。
                 </div>
             </div>
             <div class="faq-item">
@@ -389,7 +1473,7 @@
                     Q：効果測定はできますか？
                 </div>
                 <div class="faq-answer">
-                    A：走行ルートのGPSデータ、SNS言及数، お客様へのヒアリング結果など، 詳細な効果レポートをご提供します。
+                    A：走行ルートのGPSデータ、SNS言及数、お客様へのヒアリング結果など、詳細な効果レポートをご提供します。
                 </div>
             </div>
         </div>
@@ -401,9 +1485,9 @@
             <h2 class="section-title">今だけ限定：無料相談キャンペーン</h2>
             <div class="campaign-highlight">
                 <h3>🔥 導入前に「無料相談」された企業の72%が成約！</h3>
-                <p style="font-size: 1.2em; margin-bottom: 20px;">フォーム送信後، <strong>最短1営業日でご連絡</strong>します</p>
-                <div style="background: linear-gradient(135deg, #FF6B6B, #FF4757); color: white; padding: 20px; border-radius: 10px; margin: 20px 0;">
-                    <h4 style="margin-bottom: 15px;">⚡️ 今すぐ行動しないと損する理由</h4>
+                <p style="font-size: 1.1em; margin-bottom: 15px;">フォーム送信後、<strong>最短1営業日でご連絡</strong>します</p>
+                <div style="background: linear-gradient(135deg, #FF6B6B, #FF4757); color: white; padding: 18px; border-radius: 10px; margin: 15px 0;">
+                    <h4 style="margin-bottom: 12px;">⚡️ 今すぐ行動しないと損する理由</h4>
                     <ul style="text-align: left; display: inline-block;">
                         <li>✅ 初回限定30%OFF（今月末まで）</li>
                         <li>✅ ポスターデザイン制作費無料</li>
@@ -414,18 +1498,18 @@
             </div>
             
             <div class="large-cta">
-                <a href="https://forms.gle/fTa9yD7snLk6EmGz6" target="_blank" class="cta-btn cta-primary" style="font-size: 1.3em; padding: 25px 40px;">
+                <a href="https://forms.gle/fTa9yD7snLk6EmGz6" target="_blank" class="cta-btn cta-primary" style="font-size: 1.2em; padding: 22px 35px;">
                     🔥 今すぐ無料相談する
                 </a>
-                <a href="#" onclick="downloadPDF()" class="cta-btn cta-secondary" style="font-size: 1.3em; padding: 25px 40px;">
+                <a href="#" onclick="downloadPDF()" class="cta-btn cta-secondary" style="font-size: 1.2em; padding: 22px 35px;">
                     📄 資料をダウンロード
                 </a>
             </div>
             
-            <div style="margin-top: 40px; background: rgba(255,255,255,0.9); padding: 30px; border-radius: 15px;">
-                <h4 style="color: #e74c3c; margin-bottom: 20px;">⏰ 限定キャンペーン終了まで</h4>
-                <div id="countdown" style="font-size: 2em; font-weight: bold; color: #2c3e50;"></div>
-                <p style="margin-top: 15px; color: #666;">お申し込みはお早めに！</p>
+            <div style="margin-top: 30px; background: rgba(255,255,255,0.9); padding: 25px; border-radius: 15px;">
+                <h4 style="color: #e74c3c; margin-bottom: 15px;">⏰ 限定キャンペーン終了まで</h4>
+                <div id="countdown" style="font-size: 1.8em; font-weight: bold; color: #2c3e50;"></div>
+                <p style="margin-top: 12px; color: #666;">お申し込みはお早めに！</p>
             </div>
         </div>
     </section>
@@ -453,7 +1537,7 @@
                     <p>その他エリアもご相談ください</p>
                 </div>
             </div>
-            <div style="border-top: 1px solid #34495e; padding-top: 20px; margin-top: 30px;">
+            <div style="border-top: 1px solid #34495e; padding-top: 15px; margin-top: 25px;">
                 <p>&copy; 2025 合同会社ADLINK. All rights reserved.</p>
             </div>
         </div>
@@ -772,1040 +1856,8 @@
         });
     </script>
 </body>
-</html><!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>アドチャリ - 走る広告でビジネスを加速</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-        
-        /* Ensure proper section ordering */
-        body {
-            font-family: 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        /* Force hero section to be first */
-        .hero {
-            order: 1;
-            position: relative;
-            overflow: hidden;
-            margin-top: 0 !important;
-            padding-top: 0 !important;
-        }
-        
-        .problems { order: 2; }
-        .features { order: 3; }
-        .success-stories { order: 4; }
-        .photo-gallery { order: 5; }
-        .testimonials { order: 6; }
-        .pricing { order: 7; }
-        .process { order: 8; }
-        .faq { order: 9; }
-        .campaign { order: 10; }
-        .footer { order: 11; }
-        
-        /* Fixed CTA should float above everything */
-        .fixed-cta {
-            order: 0;
-            position: fixed !important;
-            z-index: 9999 !important;
-        }
-        
-        /* Features Swiper */
-        .features-swiper .swiper-slide {
-            width: 350px;
-            margin-right: 30px;
-        }
-        
-        .features-swiper {
-            padding: 20px 0 60px;
-        }
-        
-        /* Gallery Swiper */
-        .gallery-swiper .swiper-slide {
-            width: 320px;
-            margin-right: 20px;
-        }
-        
-        .gallery-swiper {
-            padding: 20px 0 60px;
-        }
-        
-        /* Success Stories Swiper */
-        .success-stories {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 80px 0;
-        }
-        
-        .success-stories .section-title {
-            color: white;
-        }
-        
-        .success-swiper .swiper-slide {
-            width: 300px;
-            margin-right: 30px;
-        }
-        
-        .success-swiper {
-            padding: 20px 0 60px;
-        }
-        
-        .success-story-card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 40px 30px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            text-align: center;
-            height: 320px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            transition: transform 0.3s ease;
-        }
-        
-        .success-story-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .success-number {
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #FFD700;
-            margin-bottom: 15px;
-        }
-        
-        .success-title {
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-        
-        .success-description {
-            line-height: 1.5;
-            opacity: 0.9;
-            font-size: 0.95em;
-        }
-        
-        /* Testimonials Swiper */
-        .testimonials-swiper .swiper-slide {
-            width: 380px;
-            margin-right: 20px;
-        }
-        
-        .testimonials-swiper {
-            padding: 20px 0 60px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Swiper Styles */
-        .swiper-container {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .swiper-wrapper {
-            display: flex;
-            transition-timing-function: ease-in-out;
-            will-change: transform;
-        }
-        
-        .swiper-slide {
-            flex-shrink: 0;
-            width: 100%;
-            position: relative;
-        }
-        
-        /* Swiper Pagination - Better positioning */
-        .swiper-pagination {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 12px;
-            z-index: 10;
-            justify-content: center;
-            align-items: center;
-            pointer-events: none;
-        }
-        
-        .swiper-pagination-bullet {
-            width: 14px;
-            height: 14px;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            pointer-events: auto;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        .swiper-pagination-bullet-active {
-            background: #FFD700;
-            transform: scale(1.2);
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
-            border-color: #FFD700;
-        }
-        
-        .swiper-pagination-bullet:hover {
-            background: rgba(255, 255, 255, 0.8);
-            transform: scale(1.1);
-        }
-        
-        /* Hero pagination specific styling */
-        .hero-swiper .swiper-pagination {
-            bottom: 40px;
-        }
-        
-        /* Features and other sections pagination */
-        .features-swiper .swiper-pagination,
-        .gallery-swiper .swiper-pagination,
-        .success-swiper .swiper-pagination,
-        .testimonials-swiper .swiper-pagination {
-            position: relative;
-            bottom: auto;
-            left: auto;
-            transform: none;
-            margin-top: 30px;
-            margin-bottom: 0;
-        }
-        
-        .features-swiper .swiper-pagination-bullet,
-        .gallery-swiper .swiper-pagination-bullet,
-        .success-swiper .swiper-pagination-bullet,
-        .testimonials-swiper .swiper-pagination-bullet {
-            background: rgba(102, 126, 234, 0.3);
-            border-color: rgba(102, 126, 234, 0.5);
-        }
-        
-        .features-swiper .swiper-pagination-bullet-active,
-        .gallery-swiper .swiper-pagination-bullet-active,
-        .success-swiper .swiper-pagination-bullet-active,
-        .testimonials-swiper .swiper-pagination-bullet-active {
-            background: #667eea;
-            border-color: #667eea;
-            box-shadow: 0 0 15px rgba(102, 126, 234, 0.4);
-        }
-        
-        .swiper-button-next,
-        .swiper-button-prev {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10;
-            transition: all 0.3s ease;
-            color: #2c3e50;
-            font-size: 20px;
-            font-weight: bold;
-            user-select: none;
-        }
-        
-        .swiper-button-next:hover,
-        .swiper-button-prev:hover {
-            background: rgba(255, 215, 0, 0.9);
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        
-        .swiper-button-next {
-            right: 20px;
-        }
-        
-        .swiper-button-prev {
-            left: 20px;
-        }
-        
-        /* Hero Swiper */
-        .hero-swiper {
-            height: 70vh;
-            min-height: 500px;
-        }
-        
-        .hero-slide {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .hero-slide-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.7) 0%, rgba(118, 75, 162, 0.7) 100%);
-            z-index: 2;
-        }
-        
-        .hero-slide-content {
-            position: relative;
-            z-index: 3;
-            max-width: 800px;
-            padding: 0 20px;
-        }
-        
-        .hero-slide h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-            font-weight: 900;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            animation: fadeInUp 1s ease;
-        }
-        
-        .hero-slide .subtitle {
-            font-size: 1.5em;
-            margin-bottom: 15px;
-            color: #FFD700;
-            font-weight: bold;
-        }
-        
-        .hero-slide .description {
-            font-size: 1.1em;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-        
-        /* Fixed CTA Buttons */
-        .fixed-cta {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 15px;
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-        }
-        
-        .cta-btn {
-            padding: 15px 25px;
-            border: none;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cta-primary {
-            background: linear-gradient(135deg, #FF6B6B, #FF4757);
-            color: white;
-            box-shadow: 0 8px 25px rgba(255, 71, 87, 0.3);
-        }
-        
-        .cta-secondary {
-            background: linear-gradient(135deg, #2ED573, #1DD1A1);
-            color: white;
-            box-shadow: 0 8px 25px rgba(29, 209, 161, 0.3);
-        }
-        
-        .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-        }
-        
-        /* Hero Section - Ensure it's at the top */
-        .hero {
-            position: relative;
-            overflow: hidden;
-            margin-top: 0;
-            padding-top: 0;
-        }
-        
-        /* Section Styles */
-        .section {
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            font-size: 2.5em;
-            margin-bottom: 50px;
-            position: relative;
-            color: #2c3e50;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(135deg, #FF6B6B, #FF4757);
-            border-radius: 2px;
-        }
-        
-        /* Problems Section */
-        .problems {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-        }
-        
-        .problems .section-title {
-            color: white;
-        }
-        
-        .problems-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-        
-        .problem-card {
-            background: rgba(255,255,255,0.1);
-            padding: 30px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-        
-        .problem-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .problem-icon {
-            font-size: 3em;
-            margin-bottom: 20px;
-            display: block;
-        }
-        
-        .results-showcase {
-            background: rgba(255,255,255,0.15);
-            padding: 40px;
-            border-radius: 20px;
-            margin-top: 50px;
-        }
-        
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        
-        .result-item {
-            text-align: center;
-            background: rgba(255,255,255,0.1);
-            padding: 25px;
-            border-radius: 15px;
-        }
-        
-        .result-number {
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #FFD700;
-            display: block;
-        }
-        
-        /* Features Section */
-        .features {
-            background: #f8f9fa;
-        }
-        
-        .feature-card {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            height: 280px;
-        }
-        
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-        
-        .feature-icon {
-            font-size: 3em;
-            margin-bottom: 20px;
-            display: block;
-        }
-        
-        .feature-title {
-            font-size: 1.3em;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: #2c3e50;
-        }
-        
-        /* Photo Gallery */
-        .photo-gallery {
-            background: white;
-            padding: 80px 0;
-        }
-        
-        .photo-item {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            height: 300px;
-        }
-        
-        .photo-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
-        }
-        
-        .photo-item img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-        
-        .photo-item:hover img {
-            transform: scale(1.05);
-        }
-        
-        .photo-placeholder {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3em;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .photo-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            color: white;
-            padding: 30px 20px 20px;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .photo-item:hover .photo-caption {
-            transform: translateY(0);
-        }
-        
-        .photo-title {
-            font-weight: bold;
-            font-size: 1.1em;
-            margin-bottom: 8px;
-        }
-        
-        .photo-description {
-            font-size: 0.9em;
-            opacity: 0.9;
-            line-height: 1.4;
-        }
-        
-        /* Testimonials */
-        .testimonials {
-            background: #f8f9fa;
-        }
-        
-        .testimonial-card {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            position: relative;
-            transition: transform 0.3s ease;
-            height: 200px;
-        }
-        
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .testimonial-card::before {
-            content: '"';
-            position: absolute;
-            top: -10px;
-            left: 20px;
-            font-size: 4em;
-            color: #667eea;
-            line-height: 1;
-        }
-        
-        .testimonial-text {
-            font-size: 1em;
-            margin-bottom: 15px;
-            font-style: italic;
-            color: #555;
-            line-height: 1.5;
-        }
-        
-        .testimonial-author {
-            font-weight: bold;
-            color: #2c3e50;
-            font-size: 0.9em;
-        }
-        
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .swiper-button-next,
-            .swiper-button-prev {
-                display: none;
-            }
-            
-            .hero-slide h1 {
-                font-size: 2.2em;
-            }
-            
-            .hero-slide .subtitle {
-                font-size: 1.2em;
-            }
-            
-            .hero-slide .description {
-                font-size: 1em;
-            }
-            
-            .features-swiper .swiper-slide,
-            .gallery-swiper .swiper-slide,
-            .success-swiper .swiper-slide,
-            .testimonials-swiper .swiper-slide {
-                width: 280px;
-                margin-right: 15px;
-            }
-            
-            .section-title {
-                font-size: 2em;
-            }
-            
-            .fixed-cta {
-                flex-wrap: wrap;
-                gap: 5px;
-            }
-            
-            .cta-btn {
-                padding: 12px 20px;
-                font-size: 14px;
-            }
-        }
-        
-        /* Touch feedback */
-        .swiper-container {
-            cursor: grab;
-        }
-        
-        .swiper-container:active {
-            cursor: grabbing;
-        }
-        
-        /* Additional existing styles */
-        .pricing {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            color: white;
-        }
-        
-        .pricing .section-title {
-            color: white;
-        }
-        
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-        
-        .pricing-card {
-            background: rgba(255,255,255,0.1);
-            padding: 40px 30px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            text-align: center;
-            position: relative;
-            transition: transform 0.3s ease;
-        }
-        
-        .pricing-card:hover {
-            transform: scale(1.05);
-        }
-        
-        .pricing-card.featured {
-            border: 3px solid #FFD700;
-            transform: scale(1.1);
-        }
-        
-        .pricing-card.featured::before {
-            content: '人気No.1';
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #FFD700;
-            color: #333;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 0.9em;
-        }
-        
-        .pricing-bikes {
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
-        
-        .pricing-price {
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #FFD700;
-            margin-bottom: 10px;
-        }
-        
-        .pricing-description {
-            margin-bottom: 20px;
-            opacity: 0.9;
-        }
-        
-        .discount-info {
-            background: rgba(255,255,255,0.15);
-            padding: 30px;
-            border-radius: 15px;
-            margin-top: 40px;
-            text-align: center;
-        }
-        
-        /* Process Section */
-        .process {
-            background: white;
-        }
-        
-        .process-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-        }
-        
-        .process-step {
-            text-align: center;
-            position: relative;
-        }
-        
-        .process-step::after {
-            content: '';
-            position: absolute;
-            top: 50px;
-            right: -20px;
-            width: 40px;
-            height: 2px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-        }
-        
-        .process-step:last-child::after {
-            display: none;
-        }
-        
-        .process-number {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2em;
-            font-weight: bold;
-            margin: 0 auto 20px;
-        }
-        
-        .process-title {
-            font-size: 1.3em;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: #2c3e50;
-        }
-        
-        /* FAQ Section */
-        .faq {
-            background: white;
-        }
-        
-        .faq-item {
-            margin-bottom: 20px;
-            border: 1px solid #e0e0e0;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        
-        .faq-question {
-            background: #f8f9fa;
-            padding: 20px;
-            cursor: pointer;
-            font-weight: bold;
-            color: #2c3e50;
-            position: relative;
-        }
-        
-        .faq-question::after {
-            content: '+';
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.5em;
-            transition: transform 0.3s ease;
-        }
-        
-        .faq-answer {
-            padding: 20px;
-            background: white;
-            display: none;
-            color: #666;
-            line-height: 1.8;
-        }
-        
-        /* Campaign Section */
-        .campaign {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
-            text-align: center;
-            color: #2c3e50;
-        }
-        
-        .campaign-highlight {
-            background: rgba(255,255,255,0.9);
-            padding: 40px;
-            border-radius: 20px;
-            margin-bottom: 40px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
-        
-        .campaign-highlight h3 {
-            font-size: 2em;
-            margin-bottom: 20px;
-            color: #e74c3c;
-        }
-        
-        .large-cta {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .large-cta .cta-btn {
-            padding: 20px 40px;
-            font-size: 1.2em;
-        }
-        
-        /* Footer */
-        .footer {
-            background: #2c3e50;
-            color: white;
-            padding: 50px 0;
-            text-align: center;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-        
-        .footer-section h4 {
-            margin-bottom: 15px;
-            color: #3498db;
-        }
-        
-        .footer-section p {
-            margin-bottom: 10px;
-            opacity: 0.8;
-        }
-        
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            margin-top: 40px;
-            background: rgba(255,255,255,0.1);
-            padding: 30px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-        }
-        
-        .stat-item {
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #FFD700;
-            display: block;
-        }
-        
-        .stat-label {
-            font-size: 0.9em;
-            opacity: 0.9;
-        }
-        
-        @media (max-width: 768px) {
-            .stats {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .process-step::after {
-                display: none;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="fixed-cta">
-        <a href="https://forms.gle/fTa9yD7snLk6EmGz6" target="_blank" class="cta-btn cta-primary">🔥 無料相談する</a>
-        <a href="#pricing" class="cta-btn cta-secondary">💰 料金を見る</a>
-        <a href="#" onclick="downloadPDF()" class="cta-btn" style="background: linear-gradient(135deg, #FFA726, #FF7043); color: white; box-shadow: 0 8px 25px rgba(255, 112, 67, 0.3);">📄 資料DL</a>
-    </div>
-
-    <!-- Hero Section with Swiper - MOVED TO TOP -->
-    <section class="hero">
-        <div class="swiper-container hero-swiper">
-            <div class="swiper-wrapper">
-                <!-- Slide 1 -->
-                <div class="swiper-slide hero-slide" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                    <div class="hero-slide-overlay"></div>
-                    <div class="hero-slide-content">
-                        <h1>🚴‍♀️ 走る広告が、<br>あなたのビジネスを動かす。</h1>
-                        <div class="subtitle">1日で1000人に届く広告、あります。</div>
-                        <p class="description">
-                            街で「何これ⁉︎」と声をかけられる。視線を集め、写真を撮られ、SNSで拡散される広告──<br>
-                            それが【アドチャリ】です。
-                        </p>
-                        <div class="stats">
-                            <div class="stat-item">
-                                <span class="stat-number">87%</span>
-                                <span class="stat-label">リピート希望率</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">1000+</span>
-                                <span class="stat-label">1日あたりリーチ数</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">最短5日</span>
-                                <span class="stat-label">実施可能</span>
-                            </div>
-                        </div>
-                    </div>
-     
-                           </div>
-                <!-- Slide 2 -->
-                <div class="swiper-slide hero-slide" style="background: linear-gradient(135deg, #FF6B6B 0%, #FF4757 100%);">
-                    <div class="hero-slide-overlay"></div>
-                    <div class="hero-slide-content">
-                        <h1>📈 売上1.5倍を実現した<br>実績多数！</h1>
-                        <div class="subtitle">導入企業の87%がリピート希望</div>
-                        <p class="description">
-                            新店オープンで2日間でフォロワー+200人<br>
-                            飲食店で夕方走行→その日の予約が即満席に<br>
-                            コスパ最強の革新的プロモーション
-                        </p>
-                        <div class="large-cta" style="margin-top: 30px;">
-                            <a href="https://forms.gle/fTa9yD7snLk6EmGz6" target="_blank" class="cta-btn cta-primary" style="font-size: 1.3em; padding: 25px 40px;">
-                                🔥 今すぐ無料相談する
-                            </a>
-                        </div>
-                    </div>
+</html>="stat-number">87%</span>
+                    <span class="stat-label">リピート希望率</span>
                 </div>
-                
-                <!-- Slide 3 -->
-                <div class="swiper-slide hero-slide" style="background: linear-gradient(135deg, #2ED573 0%, #1DD1A1 100%);">
-                    <div class="hero-slide-overlay"></div>
-                    <div class="hero-slide-content">
-                        <h1>⚡ 最短5日で<br>実施可能！</h1>
-                        <div class="subtitle">今すぐ始められる革新的プロモーション</div>
-                        <p class="description">
-                            お申し込みから最短5日で走行開始<br>
-                            デザイン制作からお任せいただけます<br>
-                            初回限定30%OFF実施中！
-                        </p>
-                        <div class="large-cta" style="margin-top: 30px;">
-                            <a href="#pricing" class="cta-btn cta-secondary" style="font-size: 1.3em; padding: 25px 40px;">
-                                💰 料金プランを見る
-                            </a>
-                        </div>
-                    </div>
-                </div>
-        
-            
-            <!-- Navigation -->
-            <div class="swiper-pagination"></div>
-            <div class="swiper-button-next">›</div>
-            <div class="swiper-button-prev">‹</div>
-        </div>    </div>
-    </section>
+                <div class="stat-item">
+                    <span class
