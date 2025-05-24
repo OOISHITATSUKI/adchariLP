@@ -88,11 +88,9 @@
                         </div>
                     </div>
                 </div>
-                <br>
-                     <div class="swiper-pagination"></div>
+                <div class="swiper-pagination"></div>
                 <div class="swiper-button-next">›</div>
                 <div class="swiper-button-prev">‹</div>
-                    <br>
             </div>
         </div>
     </section>
@@ -157,7 +155,7 @@
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <div class="photo-item">
-                            <img src="picture/お客様との触れ合い.jpg" alt="複数台での街中走行">
+                            <img src="picture/1-2-3のコピー.jpeg" alt="複数台での街中走行">
                             <div class="photo-caption">
                                 <div class="photo-title">🚲 複数台での街中走行</div>
                                 <div class="photo-description">オレンジのユニフォームで統一感を演出。3台連なって走行することで圧倒的な注目度を実現</div>
@@ -175,7 +173,6 @@
                     </div>
                     <div class="swiper-slide">
                         <div class="photo-item">
-                            <img src="picture/IMG_5916.JPG" alt="お客様との交流">
                             <div class="photo-placeholder">📸 写真3</div>
                             <div class="photo-caption">
                                 <div class="photo-title">🏪 新店舗オープン告知</div>
@@ -185,7 +182,6 @@
                     </div>
                     <div class="swiper-slide">
                         <div class="photo-item">
-                            <img src="picture/お客様との触れ合い2.jpg" alt="お客様との交流">
                             <div class="photo-placeholder">📸 写真4</div>
                             <div class="photo-caption">
                                 <div class="photo-title">📱 SNS撮影の瞬間</div>
@@ -195,7 +191,6 @@
                     </div>
                     <div class="swiper-slide">
                         <div class="photo-item">
-                            <img src="picture/お客様との触れ合い2.jpg" alt="お客様との交流">
                             <div class="photo-placeholder">📸 写真5</div>
                             <div class="photo-caption">
                                 <div class="photo-title">🌃 夜間のLED点灯走行</div>
@@ -205,7 +200,6 @@
                     </div>
                     <div class="swiper-slide">
                         <div class="photo-item">
-                            <img src="picture/お客様との触れ合い2.jpg" alt="お客様との交流">
                             <img src="picture/メイン.png" alt="ランチタイム告知">
                             <div class="photo-caption">
                                 <div class="photo-title">🍽️ ランチタイム告知</div>
@@ -224,7 +218,6 @@
                     </div>
                     <div class="swiper-slide">
                         <div class="photo-item">
-                            <img src="picture/1-2-3のコピー.jpeg" alt="お客様との交流">
                             <div class="photo-placeholder">📸 写真8</div>
                             <div class="photo-caption">
                                 <div class="photo-title">🛍️ セール・キャンペーン告知</div>
@@ -233,10 +226,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="swiper-pagination"></div>
+                <div class="swiper-pagination"></div>
                 <div class="swiper-button-next">›</div>
                 <div class="swiper-button-prev">‹</div>
+            </div>
         </div>
     </section>
 
@@ -349,7 +342,7 @@
             </div>
             <div style="text-align: center; margin-top: 50px;">
                 <div style="background: linear-gradient(135deg, #FF6B6B, #FF4757); color: white; padding: 20px; border-radius: 15px; display: inline-block;">
-                    ⏳ <strong>最短14日後から実施可能！</strong>
+                    ⏳ <strong>最短5日後の実施も可能！</strong>
                 </div>
             </div>
         </div>
@@ -412,10 +405,10 @@
                 <div style="background: linear-gradient(135deg, #FF6B6B, #FF4757); color: white; padding: 20px; border-radius: 10px; margin: 20px 0;">
                     <h4 style="margin-bottom: 15px;">⚡️ 今すぐ行動しないと損する理由</h4>
                     <ul style="text-align: left; display: inline-block;">
-                        <li>✅ 初回限定10%OFF（今月末まで）</li>
-                        <li>✅ 3日間連続で20%OFF</li>
-                        <li>✅ サンプル配布無料</li>
-                        <li>✅ 土日祝日も追加料金なし</li>
+                        <li>✅ 初回限定30%OFF（今月末まで）</li>
+                        <li>✅ ポスターデザイン制作費無料</li>
+                        <li>✅ 効果測定レポート無料提供</li>
+                        <li>✅ 次回予約で更に10%OFF権利</li>
                     </ul>
                 </div>
             </div>
@@ -951,29 +944,76 @@
             position: relative;
         }
         
+        /* Swiper Pagination - Better positioning */
         .swiper-pagination {
             position: absolute;
-            bottom: 20px;
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 10px;
+            gap: 12px;
             z-index: 10;
+            justify-content: center;
+            align-items: center;
+            pointer-events: none;
         }
         
         .swiper-pagination-bullet {
-            width: 12px;
-            height: 12px;
-            background: rgba(255, 255, 255, 0.5);
+            width: 14px;
+            height: 14px;
+            background: rgba(255, 255, 255, 0.6);
             border-radius: 50%;
             cursor: pointer;
             transition: all 0.3s ease;
+            pointer-events: auto;
+            border: 2px solid rgba(255, 255, 255, 0.3);
         }
         
         .swiper-pagination-bullet-active {
             background: #FFD700;
-            transform: scale(1.3);
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            transform: scale(1.2);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+            border-color: #FFD700;
+        }
+        
+        .swiper-pagination-bullet:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: scale(1.1);
+        }
+        
+        /* Hero pagination specific styling */
+        .hero-swiper .swiper-pagination {
+            bottom: 40px;
+        }
+        
+        /* Features and other sections pagination */
+        .features-swiper .swiper-pagination,
+        .gallery-swiper .swiper-pagination,
+        .success-swiper .swiper-pagination,
+        .testimonials-swiper .swiper-pagination {
+            position: relative;
+            bottom: auto;
+            left: auto;
+            transform: none;
+            margin-top: 30px;
+            margin-bottom: 0;
+        }
+        
+        .features-swiper .swiper-pagination-bullet,
+        .gallery-swiper .swiper-pagination-bullet,
+        .success-swiper .swiper-pagination-bullet,
+        .testimonials-swiper .swiper-pagination-bullet {
+            background: rgba(102, 126, 234, 0.3);
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+        
+        .features-swiper .swiper-pagination-bullet-active,
+        .gallery-swiper .swiper-pagination-bullet-active,
+        .success-swiper .swiper-pagination-bullet-active,
+        .testimonials-swiper .swiper-pagination-bullet-active {
+            background: #667eea;
+            border-color: #667eea;
+            box-shadow: 0 0 15px rgba(102, 126, 234, 0.4);
         }
         
         .swiper-button-next,
@@ -1225,7 +1265,7 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            height: 350px;
+            height: 280px;
         }
         
         .feature-card::before {
@@ -1722,8 +1762,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                
+     
+                           </div>
                 <!-- Slide 2 -->
                 <div class="swiper-slide hero-slide" style="background: linear-gradient(135deg, #FF6B6B 0%, #FF4757 100%);">
                     <div class="hero-slide-overlay"></div>
@@ -1761,13 +1801,11 @@
                         </div>
                     </div>
                 </div>
-                <br><br>
-                <div class="swiper-pagination"></div>
-            <div class="swiper-button-next">›</div>
-            <div class="swiper-button-prev">‹</div><br><br>
-            </div>
+        
             
             <!-- Navigation -->
-            
-        </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next">›</div>
+            <div class="swiper-button-prev">‹</div>
+        </div>    </div>
     </section>
